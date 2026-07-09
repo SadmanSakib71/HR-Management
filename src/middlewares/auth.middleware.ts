@@ -8,7 +8,7 @@ export const authenticate = (req: Request, _res: Response, next: NextFunction): 
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader?.startsWith('Bearer ')) {
-      throw new UnauthorizedError('Missing or malformed Authorization header');
+      throw new UnauthorizedError('Missing or Malformed Authorization header');
     }
 
     const token = authHeader.split(' ')[1];
