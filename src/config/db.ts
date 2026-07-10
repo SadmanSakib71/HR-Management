@@ -4,11 +4,8 @@ import { env } from './env';
 const config: Knex.Config = {
   client: 'pg',
   connection: {
-    host: env.db.host,
-    port: env.db.port,
-    user: env.db.user,
-    password: env.db.password,
-    database: env.db.name,
+    connectionString: env.databaseUrl,
+    ssl: { rejectUnauthorized: false },
   },
   pool: { min: 2, max: 10 },
 };

@@ -39,7 +39,7 @@ Each resource module follows a layered pattern: `routes -> controller -> service
 ## Prerequisites
 
 - Node.js 18+
-- PostgreSQL 13+
+- A PostgreSQL 13+ database (local or a serverless provider such as [Neon](https://neon.tech))
 
 ## Setup
 
@@ -55,7 +55,10 @@ Each resource module follows a layered pattern: `routes -> controller -> service
    cp .env.example .env
    ```
 
-3. Create the PostgreSQL database referenced by `DB_NAME` in your `.env`.
+3. Set `DATABASE_URL` in `.env` to your PostgreSQL connection string, e.g.
+   `postgresql://user:password@host:5432/dbname?sslmode=require`. Knex connects with
+   `ssl: { rejectUnauthorized: false }`, which works for both local Postgres and
+   SSL-requiring providers like Neon.
 
 ## Available Scripts
 

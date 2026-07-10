@@ -3,18 +3,15 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const baseConnection = {
-  host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT ?? 5432),
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+const connection = {
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
 };
 
 const config: Record<string, Knex.Config> = {
   development: {
     client: 'pg',
-    connection: baseConnection,
+    connection,
     migrations: {
       directory: './src/database/migrations',
       extension: 'ts',
@@ -28,7 +25,7 @@ const config: Record<string, Knex.Config> = {
 
   production: {
     client: 'pg',
-    connection: baseConnection,
+    connection,
     migrations: {
       directory: './src/database/migrations',
       extension: 'ts',

@@ -5,13 +5,7 @@ dotenv.config();
 interface EnvConfig {
   port: number;
   nodeEnv: string;
-  db: {
-    host: string;
-    port: number;
-    user: string;
-    password: string;
-    name: string;
-  };
+  databaseUrl: string;
   jwt: {
     secret: string;
     expiresIn: string;
@@ -30,13 +24,7 @@ const requireEnv = (key: string): string => {
 export const env: EnvConfig = {
   port: Number(process.env.PORT ?? 3000),
   nodeEnv: process.env.NODE_ENV ?? 'development',
-  db: {
-    host: requireEnv('DB_HOST'),
-    port: Number(process.env.DB_PORT ?? 5432),
-    user: requireEnv('DB_USER'),
-    password: requireEnv('DB_PASSWORD'),
-    name: requireEnv('DB_NAME'),
-  },
+  databaseUrl: requireEnv('DATABASE_URL'),
   jwt: {
     secret: requireEnv('JWT_SECRET'),
     expiresIn: process.env.JWT_EXPIRES_IN ?? '1d',
