@@ -5,35 +5,20 @@ import { AuthenticatedUser } from '../common/types/express';
 import { env } from '../config/env';
 
 export const authenticate = (req: Request, _res: Response, next: NextFunction): void => {
-  try {
-    const authHeader = req.headers.authorization;
-    if (!authHeader?.startsWith('Bearer ')) {
-      throw new UnauthorizedError('Missing or Malformed Authorization header');
-    }
+  const authHeader = req.headers.authorization;
 
-    const token = authHeader.split(' ')[1];
+  if (!authHeader?.startsWith('Bearer ')) {
+    next(new UnauthorizedError('No token provided'));
+    return;
+  }
+
+  const token = authHeader.slice('Bearer '.length);
+
+  try {
     const payload = jwt.verify(token, env.jwt.secret) as AuthenticatedUser;
     req.user = payload;
     next();
-  } catch (error) {
-    next(
-      error instanceof UnauthorizedError
-        ? error
-        : new UnauthorizedError('Invalid or expired token'),
-    );
+  } catch {
+    next(new UnauthorizedError('Invalid or expired token'));
   }
-};
-
-export const authorize = (...allowedRoles: string[]) => {
-  return (req: Request, _res: Response, next: NextFunction): void => {
-    if (!req.user) {
-      next(new UnauthorizedError('Not authenticated'));
-      return;
-    }
-    if (!allowedRoles.includes(req.user.role)) {
-      next(new UnauthorizedError('Insufficient permissions'));
-      return;
-    }
-    next();
-  };
 };

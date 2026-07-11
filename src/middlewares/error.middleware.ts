@@ -4,8 +4,7 @@ import { env } from '../config/env';
 
 export const notFoundHandler = (req: Request, res: Response): void => {
   res.status(404).json({
-    success: false,
-    message: `Route not found: ${req.method} ${req.originalUrl}`,
+    error: `Route not found: ${req.method} ${req.originalUrl}`,
   });
 };
 
@@ -17,16 +16,14 @@ export const errorHandler = (
 ): void => {
   if (err instanceof AppError) {
     res.status(err.statusCode).json({
-      success: false,
-      message: err.message,
-      details: err.details,
+      error: err.message,
+      ...(err.details !== undefined && { details: err.details }),
     });
     return;
   }
 
   res.status(500).json({
-    success: false,
-    message: 'Internal server error',
+    error: 'Internal server error',
     ...(env.nodeEnv !== 'production' && { stack: err.stack }),
   });
 };
