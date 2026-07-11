@@ -21,7 +21,14 @@ export const validate = (schema: ObjectSchema, target: ValidationTarget = 'body'
       return;
     }
 
-    req[target] = value;
+    if (target === 'query') {
+      // Express 5 exposes `req.query` as a getter-only property, so a plain
+      // assignment throws. Redefining it on the request instance shadows the
+      // prototype getter and lets us swap in the Joi-coerced value.
+      Object.defineProperty(req, 'query', { value, writable: true, configurable: true });
+    } else {
+      req[target] = value;
+    }
     next();
   };
 };

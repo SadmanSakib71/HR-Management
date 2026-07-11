@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express, { Application, Request, Response } from 'express';
 import helmet from 'helmet';
+import { env } from './config/env';
 import { errorHandler, notFoundHandler } from './middlewares/error.middleware';
 import attendanceRoutes from './modules/attendance/attendance.routes';
 import authRoutes from './modules/auth/auth.routes';
@@ -13,6 +14,7 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static(env.uploadDir));
 
 app.get('/health', (_req: Request, res: Response): void => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
