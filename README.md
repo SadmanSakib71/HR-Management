@@ -27,6 +27,8 @@ Backend REST API for an HR Management System — authentication, employee record
    git clone <repo-url>
    cd HRManagement
    npm install
+   ``
+
    ```
 
 2. Copy the example environment file and fill in your own values:
