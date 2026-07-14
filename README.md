@@ -8,7 +8,7 @@ Backend REST API for an HR Management System — authentication, employee record
 - Node.js + TypeScript - OOP: classes for controllers, services, repositories
 - Express.js
 - Knex.js (query builder) + PostgreSQL (tested against [Neon](https://neon.tech) serverless Postgres)
-- Joi (validation)
+- Joi - validation
 - Multer - file uploads
 - JWT (authentication) + bcrypt (password hashing)
 - ESLint + Prettier
