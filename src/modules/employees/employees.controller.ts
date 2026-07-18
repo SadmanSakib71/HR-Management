@@ -22,9 +22,6 @@ export class EmployeeController extends BaseController<EmployeeService> {
   }
 
   public list = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    // req.query is typed as Express's ParsedQs by default; the validate middleware
-    // replaces it at runtime with the Joi-coerced EmployeeListQuery shape, which
-    // has no static overlap with ParsedQs, so an `unknown` bridge cast is required.
     const query = req.query as unknown as EmployeeListQuery;
     const result = await this.service.listEmployees(query);
     res.status(200).json(result);
