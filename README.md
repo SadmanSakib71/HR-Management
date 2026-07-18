@@ -1,6 +1,6 @@
 # HR Management API
 
-Backend REST API for an HR Management System — authentication, employee records
+Backend REST API for HR Management System — authentication, employee records
 (with photo uploads), daily attendance tracking, and monthly attendance reports.
 
 ## Tech Stack
