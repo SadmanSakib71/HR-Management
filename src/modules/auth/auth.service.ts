@@ -29,8 +29,7 @@ export class AuthService {
     }
 
     const payload: JwtPayload = { id: user.id, email: user.email };
-    // @types/jsonwebtoken types `expiresIn` as a branded duration-string literal (e.g. "1d"),
-    // which a plain `string` read from process.env can never statically satisfy.
+
     const signOptions: jwt.SignOptions = {
       expiresIn: env.jwt.expiresIn as jwt.SignOptions['expiresIn'],
     };
