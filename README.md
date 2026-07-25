@@ -44,7 +44,7 @@ Backend REST API for HR Management System — authentication, employee records
    random secret. Knex connects with `ssl: { rejectUnauthorized: false }`, which works for
    both local Postgres and SSL-requiring providers like Neon.
 
-3. Run migrations to create the schema (`hr_users`, `employees`, `attendance`):
+3. Run migrations to create schema (`hr_users`, `employees`, `attendance`):
 
    ```bash
    npm run migrate
