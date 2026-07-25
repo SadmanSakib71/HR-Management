@@ -21,7 +21,7 @@ Backend REST API for HR Management System — authentication, employee records
 
 ## Setup
 
-1. Clone the repository and install dependencies:
+1. Clone repository and install dependencies:
 
    ```bash
    git clone <repo-url>
