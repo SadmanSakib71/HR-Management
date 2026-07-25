@@ -17,7 +17,7 @@ Backend REST API for HR Management System — authentication, employee records
 
 - Node.js 18+
 - A PostgreSQL 13+ database — either local Postgres or a serverless provider such as
-  [Neon](https://neon.tech) (free tier is enough). You'll need the connection string.
+  [Neon](https://neon.tech) (free tier is enough). You ll need the connection string.
 
 ## Setup
 
