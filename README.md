@@ -33,7 +33,7 @@ Backend REST API for HR Management System — authentication, employee records
 
    ```
 
-2. Copy the example environment file and fill in your own values
+2. Copy example environment file and fill in your own values
 
    ```bash
    cp .env.example .env
